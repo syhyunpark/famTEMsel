@@ -25,7 +25,7 @@
 #' @param k     dimension of the basis for representing each single-index coefficient function; see \code{mgcv::gam} for detail; the default value is 6.
 #' @param bs    type of basis for representing the single-index coefficient functions; the defult is "ps" (p-splines); any basis supported by mgcv::gam can be used, e.g., "cr" (cubic regression splines).
 #' @param sp    smoothing parameter associated with the single-index coefficient function; the default is \code{NULL}, in which case the smoothing parameter is estimated based on generalized cross-validation.
-#' @param lambda.opt.index  a user-supplied optimal regularization parameter index to be used; the default is NULL, in which case n.folds cross-validation is performed to select an optimal index.
+#' @param lambda.opt.index  a user-supplied optimal regularization parameter index to be used; the default is \code{NULL}, in which case n.folds cross-validation is performed to select an optimal index.
 #' @param lambda   a user-supplied regularization parameter sequence; typical usage is to have the program compute its own lambda sequence based on nlambda and lambda.min.ratio.
 #' @param nlambda  total number of lambda values; the default value is 30.
 #' @param lambda.min.ratio  the smallest value for lambda, as a fraction of lambda.max, the (data derived) entry value (i.e. the smallest value for which all coefficients are zero); the default is 1e-2.
