@@ -1,0 +1,13 @@
+Package: famTEMsel
+Type: Package
+Title: Functional Additive Models for Treatment Effect-Modifier Selection
+Version: 0.1.0
+Author: Park, H., Petkova, E., Tarpey, T., Ogden, R.T. 
+Maintainer: Hyung Park <parkh15@nyu.edu>
+Description: An implementation of a functional additive regression model which is uniquely modified and constrained to model nonlinear interaction effects between a categorical treatment variable and a potentially large number of functional/scalar pretreatment covariates on their effects on a scalar-valued outcome. The model generalizes functional additive models by incorporating treatment-specific components into additive effect components, however, a structural constraint is imposed on the treatment-specific components, to give a class of orthogonal main and interaction effect additive models. If primary interest is in interactions, one can avoid estimating main effects, obviating the need to specify their form and thereby avoiding the issue of model misspecification. Utilizing this orthogonality, one can effectively conduct treatment effect-modifier variable selection. The selected covariates can be used to make individualized treatment recommendations. We refer to Park, Petkova, Tarpey, and Ogden (2020) <doi:10.1016/j.jspi.2019.05.008> and Park, Petkova, Tarpey, and Ogden (2020) "Constrained functional additive models for estimating interactions between a treatment and functional covariates" (pre-print) for detail of the method. The main function of this package is famTEMsel(). 
+License: GPL-3
+Imports: samTEMsel, mgcv, SAM, stats, splines, graphics
+Remotes: syhyunpark/samTEMsel
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
