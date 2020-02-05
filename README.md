@@ -23,7 +23,7 @@ library(devtools)
 To install the "famTEMsel" package from github, type: 
 ```
 devtools::install_github("syhyunpark/famTEMsel")  # install the famTEMsel package from github 
-library(famTEMsel)   # load the samTEMsel package to R 
+library(famTEMsel)       # load the famTEMsel package to R 
 ```
 
 To see some of the example codes appearing in the "help" menu, type:  
