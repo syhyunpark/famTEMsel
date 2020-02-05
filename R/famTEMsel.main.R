@@ -25,7 +25,7 @@
 #' @param k     dimension of the basis for representing each single-index coefficient function; see \code{mgcv::gam} for detail; the default value is 6.
 #' @param bs    type of basis for representing the single-index coefficient functions; the defult is "ps" (p-splines); any basis supported by mgcv::gam can be used, e.g., "cr" (cubic regression splines).
 #' @param sp    smoothing parameter associated with the single-index coefficient function; the default is \code{NULL}, in which case the smoothing parameter is estimated based on generalized cross-validation.
-#' @param lambda.opt.index  a user-supplied optimal regularization parameter index to be used; the default is NULL, in which case n.folds cross-validation is performed to select an optimal index.
+#' @param lambda.opt.index  a user-supplied optimal regularization parameter index to be used; the default is \code{NULL}, in which case n.folds cross-validation is performed to select an optimal index.
 #' @param lambda   a user-supplied regularization parameter sequence; typical usage is to have the program compute its own lambda sequence based on nlambda and lambda.min.ratio.
 #' @param nlambda  total number of lambda values; the default value is 30.
 #' @param lambda.min.ratio  the smallest value for lambda, as a fraction of lambda.max, the (data derived) entry value (i.e. the smallest value for which all coefficients are zero); the default is 1e-2.
@@ -508,7 +508,7 @@ famTEMsel <- function(y, A, X, Z= NULL, mu.hat= NULL,
 #'
 #'
 #' @return
-#' \item{predicted}{a (n-by-\code{length(lambda.index)}) matrix of predicted values; a (n-by-\code{length(lambda.index)}*(p+q+1)) matrix of predicted values if type =  "terms", where the last column corresponds to the (treatment-specific) intercept.}
+#' \item{predicted}{a (n-by-\code{length(lambda.index)}) matrix of predicted values; if type =  "terms", then a (n-by-\code{length(lambda.index)}*(p+q+1)) matrix of predicted values, where the last column corresponds to the (treatment-specific) intercept.}
 #' \item{U}{a n-by-(p+q) matrix of the index variables; the first p columns correspond to the 1-D projections of the p functional covariates and the last q columns correspond to the q scalar covariates.}
 #'
 #' @author Park, Petkova, Tarpey, Ogden
@@ -664,10 +664,10 @@ make_ITR_famTEMsel  = function(famTEMsel.obj, newX = NULL, newZ= NULL, lambda.in
 #' @param newZ a (n by q) matrix of new values for the scalar covariates Z at which predictions are to be made; if \code{NULL}, Z from the training set is used.
 #' @param newA a (n-by-1) vector of new values for the treatment A at which plots are to be made; the default is \code{NULL}, in which case A is taken from the training set.
 #' @param lambda.index an index of the tuning parameter \code{lambda} at which plots are to be made; one can supply \code{lambda.opt.index} obtained from the function \code{cv.samTEMsel}; the default is \code{NULL}, in which case \code{plot_samTEMsel} utilizes the most non-sparse model.
-#' @param which.index  this specifies which component functions are to be plotted; the default is all p component functions, i.e., 1:p.
+#' @param which.index  this specifies which component functions are to be plotted; the default is only nonzero component functions.
 #' @param scatter.plot if \code{TRUE}, draw scatter plots of partial residuals versus the covariates; these scatter plots are made based on the training observations;  the default is \code{TRUE}.
 #' @param ylims this specifies the vertical range of the plots, e.g., c(-10, 10).
-#' @param single.index.plot if \code{TRUE}, draw the plots of the estimated single-index coefficient functions; the default is \code{TRUE}.
+#' @param single.index.plot if \code{TRUE}, draw the plots of the estimated single-index coefficient functions; the default is \code{FALSE}.
 #' @param solution.path  if \code{TRUE}, draw the functional norms of the fitted component functions (based on the training set) versus the regularization parameter; the default is \code{FALSE}.
 #'
 #'
@@ -681,7 +681,7 @@ plot_famTEMsel <- function(famTEMsel.obj,
                            lambda.index =famTEMsel.obj$lambda.index,
                            which.index  =famTEMsel.obj$nonzero.index,
                            ylims,
-                           single.index.plot=TRUE, solution.path = FALSE)
+                           single.index.plot=FALSE, solution.path = FALSE)
 {
 
   v = famTEMsel.obj$samTEMsel.obj$p
